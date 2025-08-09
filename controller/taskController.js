@@ -16,7 +16,7 @@ class taskController {
     const newTask = new Task(name, desc);
     this.tasks.push(newTask);
 
-    res.status(201).send(`${name} Task was created succesfully`);
+    res.redirect("/");
   }
 
   removeTask(req, res) {
@@ -30,16 +30,14 @@ class taskController {
 
     this.tasks.splice(taskIndex, 1);
 
-    res.redirect("/tasks");
+    res.redirect("/");
   }
 
   renderHome(req, res) {
-    res.render("home");
+    res.render("home", { tasks: this.tasks });
   }
 
-  renderTasks(req, res) {
-    res.render("tasks", { tasks: this.tasks });
-  }
+
 }
 
 module.exports = new taskController();

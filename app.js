@@ -7,6 +7,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const app = express();
 const PORT = 3000;
 
+
 // Configuração do EJS
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -14,6 +15,9 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+//CSS
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 //Aplicativo voce deve usar as seguintes raizes
 app.use("/", taskRoutes);

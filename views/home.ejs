@@ -5,22 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do!</title>
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to To Do</h1>
-    </header>
-    <main>
-        <section>
-            <form action="/addTask" method="post">
-                <input type="text" name="name" id="name" placeholder="name">
-                <input type="text" name="desc" id="desc" placeholder="description">
-                <button type="submit">Submit task</button>
-            </form>
-            <a href="/tasks">View your To Do!</a>
-        </section>
-    </main>
+    <div class="grid-container">
+        <header>
+            <h1>Welcome to To Do</h1>
+        </header>
+        <main>
+            <section>
+                <h1>Insert tasks</h1>
+                <form action="/addTask" method="post">
+                    <input type="text" name="name" id="name" placeholder="name">
+                    <input type="text" name="desc" id="desc" placeholder="description">
+                    <button type="submit">Submit task</button>
+                </form>
+               
+            </section>
+
+            <section>
+                <h1>Your tasks</h1>
+                <ul>
+                    <% tasks.forEach(task=> { %>
+                        <li>
+                            <strong>
+                                <%= task.name %>
+                            </strong>: <%= task.desc %>
+
+                                <form action="/removeTask/<%= task.id %>" method="POST" style="display:inline;">
+                                    <button type="submit">Remover</button>
+                                </form>
+                        </li>
+                        <% }) %>
+                </ul>
+            </section>
+        </main>
+    </div>
 </body>
 
 </html>
